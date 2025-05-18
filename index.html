@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Fight Simulator</title>    
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+    <h1>Anime Fight Simulator</h1>
+    <div class="video-container" id="videoContainer">
+
+        <div class="fight-select-container">
+            <label for="fightSelect">Choose Fight:</label>
+            <select id="fightSelect">
+                </select>
+        </div>
+
+        <div class="health-bar-container">
+            <div class="health-bar" id="healthBar">100%</div>
+        </div>
+
+        <div class="game-over-overlay" id="gameOverOverlay">
+            <div class="game-over-message">Defeated!</div>
+        </div>
+
+        <video id="animeVideo" width="700" height="400" muted>
+            Your browser does not support the video tag.
+        </video>
+
+        <audio id="punchSFX" src="assets/punch.wav"></audio>
+
+        <div class="controls" id="controls">
+            </div>
+
+        <button id="retryButton" class="hidden mt-4 px-6 py-2 bg-green-500 text-white rounded-md hover:bg-green-600">Retry</button>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

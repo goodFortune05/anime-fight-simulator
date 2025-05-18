@@ -1,0 +1,194 @@
+/* Custom styles for a more anime game feel */
+body {
+    font-family: 'Bangers', cursive; /* Use the anime-style font */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to bottom right, #ff7e5f, #feb47b); /* Gradient background */
+    color: #333; /* Default text color */
+    flex-flow: column;
+}
+.video-container {
+    max-width: 800px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+    border-radius: 15px; /* More rounded corners */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Stronger shadow */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px; /* More padding */
+    position: relative; /* Needed for absolute positioning of overlay/message */
+}
+h1 {
+    font-size: 3rem; /* Larger title */
+    margin-bottom: 20px;
+    color: #4f46e5; /* Indigo color */
+    text-shadow: 2px 2px #fff; /* White text shadow */
+}
+ /* Style for the fight selection dropdown */
+.fight-select-container {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.fight-select-container label {
+    font-size: 1.5rem;
+    margin-right: 10px;
+    color: #333;
+}
+
+.fight-select-container select {
+    padding: 8px 15px;
+    border-radius: 5px;
+    border: 2px solid #4f46e5;
+    font-size: 1rem;
+    font-family: 'Bangers', cursive;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+
+video {
+    width: 100%;
+    height: auto;
+    border-radius: 10px; /* Rounded corners for video */
+    border: 3px solid #4f46e5; /* Border around video */
+    transition: transform 0.1s ease-in-out;
+}
+.controls {
+    margin-top: 30px; /* More space above controls */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px; /* More space between buttons */
+}
+button {
+    padding: 12px 25px; /* Larger buttons */
+    background: linear-gradient(to right, #6366f1, #4f46e5); /* Gradient button background */
+    color: white;
+    border: none;
+    border-radius: 8px; /* Rounded button corners */
+    cursor: pointer;
+    font-size: 1.2rem; /* Larger font size */
+    font-family: 'Bangers', cursive; /* Apply anime font to buttons */
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between icon and text */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Button shadow */
+    text-transform: uppercase; /* Uppercase text */
+}
+button:hover {
+    background: linear-gradient(to right, #4f46e5, #3730a3); /* Darker gradient on hover */
+    transform: translateY(-2px); /* Slight lift effect on hover */
+}
+ button:active {
+    transform: translateY(0); /* Press down effect on click */
+}
+
+/* CSS for the shake animation */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-8px); } /* Increased shake intensity */
+    20%, 40%, 60%, 80% { transform: translateX(8px); } /* Increased shake intensity */
+}
+
+/* Apply shake effect to the video element */
+.shake-effect {
+    animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both; /* Slightly faster shake */
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+ /* CSS for the game over shake animation (more intense) */
+ @keyframes game-over-shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-15px); } /* More intense shake */
+    20%, 40%, 60%, 80% { transform: translateX(15px); } /* More intense shake */
+}
+
+.game-over-shake-effect {
+     animation: game-over-shake 1.2s cubic-bezier(.36,.07,.19,.97) both; /* Longer and more intense */
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+
+/* Styles for the health bar */
+.health-bar-container {
+    width: 100%;
+    height: 30px; /* Taller health bar */
+    background-color: #e0e0e0;
+    border-radius: 8px; /* Rounded corners */
+    overflow: hidden;
+    margin-bottom: 20px; /* More space below health bar */
+    border: 2px solid #555; /* Darker border */
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* Inner shadow */
+}
+
+.health-bar {
+    height: 100%;
+    width: 100%; /* Initial width */
+    background: linear-gradient(to right, #4CAF50, #8bc34a); /* Green gradient */
+    transition: width 0.5s ease-in-out; /* Smooth transition for width changes */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 1.1rem; /* Larger font */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Text shadow */
+}
+
+ /* Color changes based on health percentage */
+.health-bar.low {
+    background: linear-gradient(to right, #f44336, #e57373); /* Red gradient */
+}
+
+.health-bar.medium {
+    background: linear-gradient(to right, #ff9800, #ffb74d); /* Orange gradient */
+}
+
+/* Styles for the game over overlay and message */
+.game-over-overlay {
+    position: absolute;
+    /* top, left, width, height will be set by JS to cover only the video */
+    background-color: rgba(255, 0, 0, 0.6); /* Slightly more opaque red */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10; /* Ensure it's above the video */
+    opacity: 0; /* Initially hidden */
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out;
+    border-radius: 10px; /* Match video border radius */
+}
+
+.game-over-overlay.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.game-over-message {
+    color: white;
+    font-size: 4rem; /* Larger message */
+    font-weight: bold;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7); /* Stronger text shadow */
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Style for the keyboard shortcut hint */
+.shortcut-hint {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-left: 5px;
+}
